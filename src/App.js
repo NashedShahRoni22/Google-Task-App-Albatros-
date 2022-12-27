@@ -1,12 +1,35 @@
 import "./App.css";
-import { Button } from "@material-tailwind/react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Main from "./Layouts/Main";
+import AddTask from "./Pages/AddTask";
+import Login from "./Authentication/Login";
+import Register from "./Authentication/Register";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Main/>,
+      children: [
+        {
+          path: "/",
+          element: <AddTask/>,
+        },
+        {
+          path: "/login",
+          element: <Login/>,
+        },
+        {
+          path: "/register",
+          element: <Register/>,
+        },
+      ],
+    },
+  ]);
   return (
-    <>
-      <h1 className="text-3xl font-bold">Hello world!</h1>
-      <Button>Button</Button>
-    </>
+    <main>
+      <RouterProvider router={router} />
+    </main>
   );
 }
 
