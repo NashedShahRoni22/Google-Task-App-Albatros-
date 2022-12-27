@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { app } from '../Firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -27,6 +27,15 @@ const AuthProvider = ({children}) => {
         localStorage.removeItem('accessToken');
         return signOut(auth);
     }
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+            console.log("Current user",currentUser);
+            setUser(currentUser);
+            setLoader(false);
+        });
+
+        return () => unsubscribe();
+    },[])
 
     const authInfo ={
         googleSignIn, 
@@ -34,7 +43,8 @@ const AuthProvider = ({children}) => {
         loader, 
         setLoader, 
         loginUser,
-        signOutUser
+        signOutUser,
+        user
     }
     return (
         <AuthContext.Provider value={authInfo}>

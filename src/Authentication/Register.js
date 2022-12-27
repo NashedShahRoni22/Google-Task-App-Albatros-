@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const Register = () => {
-  const { createUser, googleSignIn, loader, setLoader } =
+  const { createUser, googleSignIn, setLoader } =
     useContext(AuthContext);
   //navigate user
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   MobileNav,
@@ -7,9 +7,19 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
+  const { user, signOutUser } = useContext(AuthContext);
+  const handleLogOut = () => {
+    signOutUser()
+      .then(() => {
+        toast.error("Sign Out Successfull!");
+      })
+      .catch((e) => console.error(e));
+  };
 
   useEffect(() => {
     window.addEventListener(
@@ -26,9 +36,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link className="flex items-center">
-          Add Task
-        </Link>
+        <Link className="flex items-center">Add Task</Link>
       </Typography>
       <Typography
         as="li"
@@ -36,9 +44,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link className="flex items-center">
-          My Task
-        </Link>
+        <Link className="flex items-center">My Task</Link>
       </Typography>
       <Typography
         as="li"
@@ -46,9 +52,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link className="flex items-center">
-          Completed Task
-        </Link>
+        <Link className="flex items-center">Completed Task</Link>
       </Typography>
     </ul>
   );
@@ -64,15 +68,28 @@ const Header = () => {
           <Link to="/">NSR Task</Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <Link to="login">
-          <Button
-            variant="gradient"
-            size="sm"
-            className="hidden lg:inline-block" 
-          >
-            <span>Login</span>
-          </Button>
-        </Link>
+        <div>
+          {user?.uid ? (
+            <Button
+              variant="gradient"
+              size="sm"
+              className="hidden lg:inline-block"
+              onClick={handleLogOut}
+            >
+              <span>Log Out</span>
+            </Button>
+          ) : (
+            <Link to="login">
+              <Button
+                variant="gradient"
+                size="sm"
+                className="hidden lg:inline-block"
+              >
+                <span>Log In</span>
+              </Button>
+            </Link>
+          )}
+        </div>
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -113,11 +130,23 @@ const Header = () => {
       </div>
       <MobileNav open={openNav}>
         {navList}
-        <Link to="login">
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Login</span>
+        {user?.uid ? (
+          <Button
+            onClick={handleLogOut}
+            variant="gradient"
+            size="sm"
+            fullWidth
+            className="mb-2"
+          >
+            <span>Log Out</span>
           </Button>
-        </Link>
+        ) : (
+          <Link to="login">
+            <Button variant="gradient" size="sm" fullWidth className="mb-2">
+              <span>Login</span>
+            </Button>
+          </Link>
+        )}
       </MobileNav>
     </Navbar>
   );

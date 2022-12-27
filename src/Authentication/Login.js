@@ -1,10 +1,11 @@
 import { Button, Input } from "@material-tailwind/react";
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const Login = () => {
-  const { googleSignIn, loginUser, loader, setLoader } =
+  const { googleSignIn, loginUser, setLoader } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,10 +21,11 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         console.log(user);
+        toast.success("Login Successfull!")
         navigate(from, { replace: true });
       })
       .catch((e) => {
-        console.log(e.message);
+        toast.error(e.message);
         setLoader(false);
       });
   };

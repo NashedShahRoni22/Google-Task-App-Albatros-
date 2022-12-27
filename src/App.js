@@ -4,6 +4,7 @@ import Main from "./Layouts/Main";
 import AddTask from "./Pages/AddTask";
 import Login from "./Authentication/Login";
 import Register from "./Authentication/Register";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,6 +30,7 @@ function App() {
   return (
     <main>
       <RouterProvider router={router} />
+      <Toaster />
     </main>
   );
 }
