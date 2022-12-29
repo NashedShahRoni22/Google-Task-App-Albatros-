@@ -52,7 +52,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link className="flex items-center">Completed Task</Link>
+        <Link to="/cpmpletedTask" className="flex items-center">Completed Task</Link>
       </Typography>
     </ul>
   );

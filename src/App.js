@@ -6,6 +6,8 @@ import Login from "./Authentication/Login";
 import Register from "./Authentication/Register";
 import { Toaster } from "react-hot-toast";
 import MyTask from "./Pages/MyTask";
+import Update from "./Shared/Update";
+import CompletedTask from "./Pages/CompletedTask";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +30,15 @@ function App() {
         {
           path: "/myTask",
           element: <MyTask/>,
+        },
+        {
+          path: "/update/:id",
+          element: <Update/>,
+          loader: ({params})=> fetch(`http://localhost:8000/updateTask/${params.id}`)
+        },
+        {
+          path: "/cpmpletedTask",
+          element: <CompletedTask/>
         },
       ],
     },

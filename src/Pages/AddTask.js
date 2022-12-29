@@ -1,21 +1,21 @@
-import { Button, Input } from "@material-tailwind/react";
+import { Button, Textarea } from "@material-tailwind/react";
 import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import TaskAnim from "../Anim/man-with-task-list.json";
 import { AuthContext } from "../Context/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 const style = {
   height: 400,
 };
 const AddTask = () => {
   const { user } = useContext(AuthContext);
-  const handleAddTask =(e)=>{
+  const navigate = useNavigate();
+  const handleAddTask = (e) => {
     e.preventDefault();
     const form = e.target;
     const task = form.task.value;
     const image = form.image.files[0];
-    console.log(task, image);
 
     const formData = new FormData();
     formData.append("image", image);
@@ -28,13 +28,14 @@ const AddTask = () => {
       .then((imageData) => {
         const taskDetails = {
           task,
-          image: imageData.data.display_url
+          image: imageData.data.display_url,
+          isCompleted:false
         };
         addTaskToDb(taskDetails);
         form.reset();
       })
       .catch((e) => console.log(e));
-  }
+  };
   const addTaskToDb = (taskDetails) => {
     fetch("http://localhost:8000/task", {
       method: "POST",
@@ -47,13 +48,17 @@ const AddTask = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Task added successfully!");
+          navigate("/myTask");
         }
       });
   };
   return (
     <div className="my-20 h-[80vh] relative">
       <h1 className="text-3xl text-center">Add a new task</h1>
-      <form onSubmit={handleAddTask} className="mt-8 shadow-2xl p-8 rounded-3xl">
+      <form
+        onSubmit={handleAddTask}
+        className="mt-8 shadow-2xl p-8 rounded-3xl"
+      >
         <input
           type="file"
           name="image"
@@ -64,9 +69,11 @@ const AddTask = () => {
                 file:bg-violet-50 file:text-violet-700
                 hover:file:bg-violet-100 mb-4 cursor-pointer"
         />
-        <Input label="Task" name="task"/>
+        <Textarea label="Task" name="task" />
         {user?.uid ? (
-          <Button className="mt-4 w-full" type="submit">Add</Button>
+          <Button className="mt-4 w-full" type="submit">
+            Add
+          </Button>
         ) : (
           <Link to="/login">
             <Button className="mt-4 w-full">Please login to add a task</Button>
