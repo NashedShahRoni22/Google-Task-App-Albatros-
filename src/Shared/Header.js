@@ -36,7 +36,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link className="flex items-center">Add Task</Link>
+        <Link to="/" className="flex items-center">Add Task</Link>
       </Typography>
       <Typography
         as="li"
@@ -44,7 +44,7 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link className="flex items-center">My Task</Link>
+        <Link to="/myTask" className="flex items-center">My Task</Link>
       </Typography>
       <Typography
         as="li"

@@ -5,6 +5,7 @@ import AddTask from "./Pages/AddTask";
 import Login from "./Authentication/Login";
 import Register from "./Authentication/Register";
 import { Toaster } from "react-hot-toast";
+import MyTask from "./Pages/MyTask";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ function App() {
         {
           path: "/register",
           element: <Register/>,
+        },
+        {
+          path: "/myTask",
+          element: <MyTask/>,
         },
       ],
     },
