@@ -42,7 +42,7 @@ const CompletedTask = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount > 0) {
-          toast.success("Completed task successfully!");
+          toast.success("Removed task successfully!");
           refetch();
         }
       });
@@ -50,8 +50,6 @@ const CompletedTask = () => {
   const handleComment =(e)=>{
     e.preventDefault();
     const comment = e.target.comment.value;
-    // const taskId = e.target.task_id.value;
-
     const c = {comment, email : user.email}
     fetch("https://task-management-server-livid.vercel.app/comment", {
       method: "POST",
@@ -76,8 +74,7 @@ const CompletedTask = () => {
       </h1>
       <div className="grid lg:grid-cols-2 gap-4 my-10">
         {completedTask?.map((ct) => (
-          <section key={ct._id}>
-            <div className="dark:bg-white dark:text-black w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between p-4">
+            <div key={ct._id} className="dark:border-2 dark:border-pink-400 dark:text-white w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <img src={ct.image} className="h-36 w-36 rounded-3xl" alt="" />
                 <p>{ct.task}</p>
@@ -86,23 +83,21 @@ const CompletedTask = () => {
                 <div className="flex items-center justify-end gap-4">
                   <MdSettingsBackupRestore
                     onClick={() => handleNotConfirm(ct)}
-                    className="text-3xl cursor-pointer text-green-500"
+                    className="text-3xl cursor-pointer text-green-400 hover:bg-white rounded-full"
                   />
                   <MdDelete
                     onClick={() => handleDelete(ct)}
-                    className="text-3xl cursor-pointer text-red-500"
+                    className="text-3xl cursor-pointer text-red-400 hover:bg-white rounded-full"
                   />
                 </div>
                 <form onSubmit={handleComment} className="mt-4 flex flex-col items-end">
-                  <Input label="Comment" name="comment"></Input>
-                  {/* <Input defaultValue={ct._id} className="hidden" name='task_id'></Input> */}
+                  <Input label="Comment" name="comment" className="dark:text-blue-400"></Input>
                   <Button type="submit" className="mt-2 w-fit bg-gradient-to-r from-blue-400 to-pink-600 " size="sm">
                     Comment
                   </Button>
                 </form>
               </div>
             </div>
-          </section>
         ))}
       </div>
       <div className="flex justify-end">

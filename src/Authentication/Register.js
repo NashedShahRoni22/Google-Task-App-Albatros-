@@ -40,7 +40,7 @@ const Register = () => {
     })
   }
   return (
-    <div className="my-20">
+    <div className="my-20 h-[100vh]">
       <h1 className="text-3xl">Register Now</h1>
       <form
         onSubmit={handleRegistration}

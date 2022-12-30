@@ -59,7 +59,7 @@ const AddTask = () => {
       <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">Add a new task</h1>
       <form
         onSubmit={handleAddTask}
-        className="mt-8 shadow-2xl p-8 rounded-3xl dark:bg-white"
+        className="mt-8 shadow-2xl p-8 rounded-3xl dark:border-4 dark:border-pink-400"
       >
         <input
           type="file"
@@ -71,7 +71,7 @@ const AddTask = () => {
                 file:bg-violet-50 file:text-violet-700
                 hover:file:bg-violet-100 mb-4 cursor-pointer"
         />
-        <Textarea label="Task" name="task" />
+        <Textarea label="Task" name="task" className="dark:text-blue-500"/>
         {user?.uid ? (
           <Button className="mt-4 w-full bg-gradient-to-r from-blue-400 to-pink-600 " type="submit">
             Add

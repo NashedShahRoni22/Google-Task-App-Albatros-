@@ -33,22 +33,22 @@ const SingleTask = ({ t, refetch }) => {
       });
   };
   return (
-    <div className="w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between dark:bg-white dark:text-black">
+    <div className="w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between dark:border-4 dark:border-blue-400 dark:text-white">
       <div className="flex items-center gap-4">
         <img src={t.image} className="h-36 w-36 rounded-3xl" alt="" />
         <p>{t.task}</p>
       </div>
       <div className="flex items-center gap-4 mr-8">
         <Link to={`/update/${t._id}`}>
-          <MdOutlineUpdate className="text-3xl cursor-pointer text-blue-400" />
+          <MdOutlineUpdate className="text-4xl cursor-pointer text-blue-400 hover:bg-white hover:rounded-full"/>
         </Link>
         <MdOutlineCheck
           onClick={() => handleConfirm(t)}
-          className="text-3xl cursor-pointer text-green-500"
+          className="text-4xl cursor-pointer text-green-400 hover:bg-white hover:rounded-full"
         />
         <MdDelete
           onClick={() => handleDelete(t)}
-          className="text-3xl cursor-pointer text-red-500"
+          className="text-4xl cursor-pointer text-red-400 hover:bg-white hover:rounded-full"
         />
       </div>
     </div>

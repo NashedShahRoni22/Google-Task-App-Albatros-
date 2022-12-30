@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-hot-toast";
 import logo from "../assests/nsrtask_logo.png";
-import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { BsFillSunFill, BsMoonStars } from "react-icons/bs";
 
 const Header = ({ handleThemeSwitch, btn }) => {
   const [openNav, setOpenNav] = useState(false);
@@ -108,7 +108,7 @@ const Header = ({ handleThemeSwitch, btn }) => {
               className="text-3xl cursor-pointer hidden lg:block"
             />
           ) : (
-            <BsFillMoonFill
+            <BsMoonStars
               className="text-3xl cursor-pointer hidden lg:block"
               onClick={handleThemeSwitch}
             />
@@ -177,13 +177,13 @@ const Header = ({ handleThemeSwitch, btn }) => {
           </Link>
         )}
         {btn ? (
-          <BsFillSunFill
+          <BsMoonStars
             onClick={handleThemeSwitch}
-            className="text-3xl cursor-pointer text-black"
+            className="text-3xl cursor-pointer text-blue-600 mt-2"
           />
         ) : (
-          <BsFillMoonFill
-            className="text-3xl cursor-pointer text-black"
+          <BsFillSunFill
+            className="text-3xl cursor-pointer text-yellow-800 mt-2"
             onClick={handleThemeSwitch}
           />
         )}
