@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MdDelete, MdSettingsBackupRestore } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import animation from "../Anim/task-completed.json";
 import { Button, Input } from "@material-tailwind/react";
+import { AuthContext } from "../Context/AuthProvider";
+
 const style = {
   height: 400,
 };
 
 const CompletedTask = () => {
+  const {user} = useContext(AuthContext);
+  const url = `http://localhost:8000/completed?email=${user.email}`
   const { data: completedTask, refetch } = useQuery({
     queryKey: ["completedTask"],
     queryFn: () =>
-      fetch("http://localhost:8000/completed").then((res) => res.json()),
+      fetch(url).then((res) => res.json()),
   });
   const handleDelete = (ct) => {
     const sure = window.confirm(`Do want to delete ${ct.task}?`);
@@ -46,7 +50,9 @@ const CompletedTask = () => {
   const handleComment =(e)=>{
     e.preventDefault();
     const comment = e.target.comment.value;
-    const c = {comment}
+    const taskId = e.target.task_id.value;
+
+    const c = {comment, email : user.email, taskId}
     fetch("http://localhost:8000/comment", {
       method: "POST",
       headers: {
@@ -89,6 +95,7 @@ const CompletedTask = () => {
                 </div>
                 <form onSubmit={handleComment} className="mt-4 flex flex-col items-end">
                   <Input label="Comment" name="comment"></Input>
+                  <Input defaultValue={ct._id} className="hidden" name='task_id'></Input>
                   <Button type="submit" className="mt-2 w-fit bg-gradient-to-r from-blue-400 to-pink-600 " size="sm">
                     Comment
                   </Button>
