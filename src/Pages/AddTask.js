@@ -1,7 +1,7 @@
 import { Button, Textarea } from "@material-tailwind/react";
 import React, { useContext } from "react";
 import Lottie from "lottie-react";
-import TaskAnim from "../Anim/man-with-task-list.json";
+import TaskAnim from "../Anim/no-task.json";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -16,6 +16,7 @@ const AddTask = () => {
     const form = e.target;
     const task = form.task.value;
     const image = form.image.files[0];
+    const email = user.email;
 
     const formData = new FormData();
     formData.append("image", image);
@@ -29,7 +30,8 @@ const AddTask = () => {
         const taskDetails = {
           task,
           image: imageData.data.display_url,
-          isCompleted:false
+          isCompleted:false,
+          email,
         };
         addTaskToDb(taskDetails);
         form.reset();
@@ -53,8 +55,8 @@ const AddTask = () => {
       });
   };
   return (
-    <div className="my-20 h-[80vh] relative">
-      <h1 className="text-3xl text-center">Add a new task</h1>
+    <div className="mt-20 relative">
+      <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">Add a new task</h1>
       <form
         onSubmit={handleAddTask}
         className="mt-8 shadow-2xl p-8 rounded-3xl"
@@ -71,17 +73,16 @@ const AddTask = () => {
         />
         <Textarea label="Task" name="task" />
         {user?.uid ? (
-          <Button className="mt-4 w-full" type="submit">
+          <Button className="mt-4 w-full bg-gradient-to-r from-blue-400 to-pink-600 " type="submit">
             Add
           </Button>
         ) : (
           <Link to="/login">
-            <Button className="mt-4 w-full">Please login to add a task</Button>
+            <Button className="mt-4 w-full bg-gradient-to-r from-blue-400 to-pink-600 ">Please login to add a task</Button>
           </Link>
         )}
       </form>
       <Lottie
-        className="absolute bottom-0 right-0"
         animationData={TaskAnim}
         style={style}
       />

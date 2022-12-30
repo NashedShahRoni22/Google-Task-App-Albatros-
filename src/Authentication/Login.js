@@ -50,8 +50,8 @@ const Login = () => {
       className="mt-8 flex flex-col gap-4 shadow-2xl p-8 rounded-3xl">
         <Input color="blue" label="Email" type="email" name="email"/>
         <Input color="blue" label="Password" type="password" name="password"/>
-        <Button color="green" type="submit">Login</Button>
-        <Button color="green" onClick={handleGoogleLogin}>Google</Button>
+        <Button color="green" type="submit" className="bg-gradient-to-r from-blue-400 to-pink-600">Login</Button>
+        <Button color="green" onClick={handleGoogleLogin} className="bg-gradient-to-r from-pink-400 to-blue-600">Google</Button>
       </form>
       <Link to="/register" className="mt-8 block">
         New here? Please register!

@@ -1,6 +1,7 @@
 import { Button, Input } from "@material-tailwind/react";
 import React, { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const Register = () => {
@@ -8,8 +9,8 @@ const Register = () => {
     useContext(AuthContext);
   //navigate user
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  // const from = location.state?.from?.pathname || "/";
   const handleRegistration = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,7 +20,8 @@ const Register = () => {
     .then(res =>{
         const user = res.user;
         console.log(user);
-        navigate(from, { replace: true });
+        toast.success("User created Successfully!")
+        navigate('/login');
     })
     .catch(e =>{
         console.error(e.message);
@@ -31,7 +33,7 @@ const Register = () => {
     .then(res=>{
         const user = res.user;
         console.log(user);
-        navigate(from, { replace: true });
+        navigate('/login');
     })
     .catch(e =>{
         console.error(e.message);
@@ -45,10 +47,10 @@ const Register = () => {
         className="mt-8 flex flex-col gap-4 shadow-2xl p-8 rounded-3xl">
         <Input required color="blue" label="Email" type="email" name="email" />
         <Input required color="blue" label="Password" type="password" name="password" />
-        <Button color="green" type="submit">
+        <Button type="submit" className="bg-gradient-to-r from-blue-400 to-pink-600 ">
           REGISTER
         </Button>
-        <Button color="green" onClick={handleGoogleSignUp}>Google</Button>
+        <Button className="bg-gradient-to-r from-pink-400 to-blue-600 " onClick={handleGoogleSignUp}>Google</Button>
       </form>
       <Link to="/login" className="mt-8 block">
         Already registered? Please login!

@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-hot-toast";
+import logo from "../assests/nsrtask_logo.png"
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -65,7 +66,10 @@ const Header = () => {
           variant="small"
           className="mr-4 cursor-pointer py-1.5 font-normal"
         >
-          <Link to="/">NSR Task</Link>
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logo} className="w-8" alt="" />
+            <span className="font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">NSR TASK</span>
+          </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <div>
@@ -73,7 +77,7 @@ const Header = () => {
             <Button
               variant="gradient"
               size="sm"
-              className="hidden lg:inline-block"
+              className="hidden lg:inline-block bg-gradient-to-r from-red-400 to-pink-600 "
               onClick={handleLogOut}
             >
               <span>Log Out</span>
@@ -83,7 +87,7 @@ const Header = () => {
               <Button
                 variant="gradient"
                 size="sm"
-                className="hidden lg:inline-block"
+                className="hidden lg:inline-block from-green-400 to-blue-600"
               >
                 <span>Log In</span>
               </Button>
@@ -136,13 +140,17 @@ const Header = () => {
             variant="gradient"
             size="sm"
             fullWidth
-            className="mb-2"
+            className="bg-gradient-to-r from-red-400 to-pink-600  "
           >
             <span>Log Out</span>
           </Button>
         ) : (
           <Link to="login">
-            <Button variant="gradient" size="sm" fullWidth className="mb-2">
+            <Button 
+            variant="gradient" 
+            size="sm" 
+            fullWidth
+            className="bg-gradient-to-l from-green-400 to-blue-600">
               <span>Login</span>
             </Button>
           </Link>

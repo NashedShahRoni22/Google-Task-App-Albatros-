@@ -21,7 +21,7 @@ const SingleTask = ({ t, refetch }) => {
   };
   const handleConfirm = (t) => {
     fetch(`http://localhost:8000/taskComplete/${t._id}`, {
-      method: "PUT"
+      method: "PUT",
     })
       .then((res) => res.json())
       .then((data) => {
@@ -31,7 +31,7 @@ const SingleTask = ({ t, refetch }) => {
           refetch();
         }
       });
-  }
+  };
   return (
     <div className="w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -42,7 +42,10 @@ const SingleTask = ({ t, refetch }) => {
         <Link to={`/update/${t._id}`}>
           <MdOutlineUpdate className="text-3xl cursor-pointer text-blue-400" />
         </Link>
-        <MdOutlineCheck onClick={()=>handleConfirm(t)} className="text-3xl cursor-pointer text-green-500" />
+        <MdOutlineCheck
+          onClick={() => handleConfirm(t)}
+          className="text-3xl cursor-pointer text-green-500"
+        />
         <MdDelete
           onClick={() => handleDelete(t)}
           className="text-3xl cursor-pointer text-red-500"

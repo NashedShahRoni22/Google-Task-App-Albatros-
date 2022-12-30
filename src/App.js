@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import MyTask from "./Pages/MyTask";
 import Update from "./Shared/Update";
 import CompletedTask from "./Pages/CompletedTask";
+import PrivateRoutes from "./Routes/PrivateRoutes";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,7 +30,7 @@ function App() {
         },
         {
           path: "/myTask",
-          element: <MyTask/>,
+          element: <PrivateRoutes><MyTask/></PrivateRoutes>,
         },
         {
           path: "/update/:id",
@@ -38,7 +39,7 @@ function App() {
         },
         {
           path: "/cpmpletedTask",
-          element: <CompletedTask/>
+          element: <PrivateRoutes><CompletedTask/></PrivateRoutes>
         },
       ],
     },

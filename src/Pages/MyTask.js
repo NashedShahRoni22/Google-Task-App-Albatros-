@@ -1,20 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import SingleTask from "../Components/SingleTask";
+import Lottie from "lottie-react";
+import animation from "../Anim/man-with-task-list.json";
+import { AuthContext } from "../Context/AuthProvider";
+
+const style = {
+  height: 400,
+};
 
 const MyTask = () => {
+  const {user} = useContext(AuthContext);
+  const url = `http://localhost:8000/alltask?email=${user.email}`
   const { data: alltask, refetch } = useQuery({
     queryKey: ["alltask"],
     queryFn: () =>
-      fetch("http://localhost:8000/alltask").then((res) => res.json()),
+      fetch(url).then((res) => res.json()),
   });
   return (
-    <div className="my-20">
-      <h1 className="text-3xl text-center">My Task {alltask?.length}</h1>
+    <div className="mt-20 relative p-4">
+      <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">
+        My Task
+      </h1>
       <div className="grid md:grid-cols-2 gap-4 my-10">
         {alltask?.map((t) => (
           <SingleTask t={t} key={t._id} refetch={refetch}></SingleTask>
         ))}
+      </div>
+      <div className="flex justify-end">
+        <Lottie animationData={animation} style={style} />
       </div>
     </div>
   );
