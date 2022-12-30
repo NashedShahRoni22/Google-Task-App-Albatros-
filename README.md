@@ -1,5 +1,5 @@
 ================
-Technology I ahve Used:
+Technology I have Used:
 ================
 1. Tailwind
 2. Material Tailwind
