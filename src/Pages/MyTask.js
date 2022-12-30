@@ -12,11 +12,13 @@ const style = {
 const MyTask = () => {
   const {user} = useContext(AuthContext);
   const url = `https://task-management-server-livid.vercel.app/alltask?email=${user.email}`
-  const { data: alltask, refetch } = useQuery({
+  const { data: alltask, refetch, isLoading } = useQuery({
     queryKey: ["alltask"],
     queryFn: () =>
       fetch(url).then((res) => res.json()),
   });
+  
+  if (isLoading) return 'Loading...'
   return (
     <div className="mt-20">
       <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">

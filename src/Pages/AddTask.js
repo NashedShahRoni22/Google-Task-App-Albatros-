@@ -3,14 +3,13 @@ import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import TaskAnim from "../Anim/no-task.json";
 import { AuthContext } from "../Context/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 const style = {
   height: 400,
 };
 const AddTask = () => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   const handleAddTask = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -50,7 +49,6 @@ const AddTask = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Task added successfully!");
-          navigate("/myTask");
         }
       });
   };

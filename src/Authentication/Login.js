@@ -44,17 +44,17 @@ const Login = () => {
   };
   return (
     <div className="my-20 h-[100vh]">
-      <h1 className="text-3xl">Login Now</h1>
+      <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">Login Now</h1>
       <form 
       onSubmit={handleLogin} 
       className="mt-8 flex flex-col gap-4 shadow-2xl p-8 rounded-3xl">
-        <Input color="blue" label="Email" type="email" name="email"/>
-        <Input color="blue" label="Password" type="password" name="password"/>
+        <Input className="dark:text-blue-500" label="Email" type="email" name="email"/>
+        <Input className="dark:text-blue-500" label="Password" type="password" name="password"/>
         <Button color="green" type="submit" className="bg-gradient-to-r from-blue-400 to-pink-600">Login</Button>
         <Button color="green" onClick={handleGoogleLogin} className="bg-gradient-to-r from-pink-400 to-blue-600">Google</Button>
       </form>
-      <Link to="/register" className="mt-8 block">
-        New here? Please register!
+      <Link to="/register" className="mt-4 block text-center">
+        New here? Please <span className="text-blue-400">Register!</span>
       </Link>
     </div>
   );

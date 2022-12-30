@@ -31,11 +31,11 @@ const Header = ({ handleThemeSwitch, btn }) => {
   }, []);
 
   const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-black dark:text-white">
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        
         className="p-1 font-normal"
       >
         <Link to="/" className="flex items-center">
@@ -45,7 +45,7 @@ const Header = ({ handleThemeSwitch, btn }) => {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        
         className="p-1 font-normal"
       >
         <Link to="/myTask" className="flex items-center">
@@ -55,7 +55,7 @@ const Header = ({ handleThemeSwitch, btn }) => {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        
         className="p-1 font-normal"
       >
         <Link to="/cpmpletedTask" className="flex items-center">
@@ -66,8 +66,8 @@ const Header = ({ handleThemeSwitch, btn }) => {
   );
 
   return (
-    <Navbar className="py-2 px-4 lg:px-8 lg:py-4">
-      <div className="mx-auto flex items-center justify-between text-blue-gray-900">
+    <Navbar className="py-2 px-4 lg:px-8 lg:py-4 dark:bg-black dark:border-blue-400">
+      <div className="mx-auto flex items-center justify-between">
         <Typography
           as="a"
           variant="small"
@@ -103,20 +103,20 @@ const Header = ({ handleThemeSwitch, btn }) => {
             </Link>
           )}
           {btn ? (
-            <BsFillSunFill
-              onClick={handleThemeSwitch}
-              className="text-3xl cursor-pointer hidden lg:block"
-            />
-          ) : (
-            <BsMoonStars
-              className="text-3xl cursor-pointer hidden lg:block"
-              onClick={handleThemeSwitch}
-            />
-          )}
+          <BsMoonStars
+            onClick={handleThemeSwitch}
+            className="text-3xl cursor-pointer text-blue-400 mt-2 md:hidden lg:block"
+          />
+        ) : (
+          <BsFillSunFill
+            className="text-3xl cursor-pointer text-yellow-800 mt-2 md:hidden lg:block"
+            onClick={handleThemeSwitch}
+          />
+        )}
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 text-inherit text-black dark:text-white hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
