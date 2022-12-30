@@ -55,11 +55,11 @@ const AddTask = () => {
       });
   };
   return (
-    <div className="mt-20 relative">
+    <div className="mt-20 relative h-[100vh]">
       <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">Add a new task</h1>
       <form
         onSubmit={handleAddTask}
-        className="mt-8 shadow-2xl p-8 rounded-3xl"
+        className="mt-8 shadow-2xl p-8 rounded-3xl dark:bg-white"
       >
         <input
           type="file"

@@ -15,36 +15,47 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Main/>,
+      element: <Main />,
       children: [
         {
           path: "/",
-          element: <AddTask/>,
+          element: <AddTask />,
         },
         {
           path: "/login",
-          element: <Login/>,
+          element: <Login />,
         },
         {
           path: "/register",
-          element: <Register/>,
+          element: <Register />,
         },
         {
           path: "/myTask",
-          element: <PrivateRoutes><MyTask/></PrivateRoutes>,
+          element: (
+            <PrivateRoutes>
+              <MyTask />
+            </PrivateRoutes>
+          ),
         },
         {
           path: "/update/:id",
-          element: <Update/>,
-          loader: ({params})=> fetch(`https://task-management-server-livid.vercel.app/updateTask/${params.id}`)
+          element: <Update />,
+          loader: ({ params }) =>
+            fetch(
+              `https://task-management-server-livid.vercel.app/updateTask/${params.id}`
+            ),
         },
         {
           path: "/cpmpletedTask",
-          element: <PrivateRoutes><CompletedTask/></PrivateRoutes>
+          element: (
+            <PrivateRoutes>
+              <CompletedTask />
+            </PrivateRoutes>
+          ),
         },
         {
           path: "*",
-          element: <NotFound></NotFound>
+          element: <NotFound></NotFound>,
         },
       ],
     },

@@ -18,11 +18,11 @@ const MyTask = () => {
       fetch(url).then((res) => res.json()),
   });
   return (
-    <div className="mt-20 relative p-4">
+    <div className="mt-20">
       <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">
         My Task
       </h1>
-      <div className="grid md:grid-cols-2 gap-4 my-10">
+      <div className="grid lg:grid-cols-2 gap-4 my-10">
         {alltask?.map((t) => (
           <SingleTask t={t} key={t._id} refetch={refetch}></SingleTask>
         ))}

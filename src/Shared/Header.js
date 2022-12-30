@@ -9,9 +9,10 @@ import {
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-hot-toast";
-import logo from "../assests/nsrtask_logo.png"
+import logo from "../assests/nsrtask_logo.png";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
-const Header = () => {
+const Header = ({ handleThemeSwitch, btn }) => {
   const [openNav, setOpenNav] = useState(false);
   const { user, signOutUser } = useContext(AuthContext);
   const handleLogOut = () => {
@@ -37,7 +38,9 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/" className="flex items-center">Add Task</Link>
+        <Link to="/" className="flex items-center">
+          Add Task
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -45,7 +48,9 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/myTask" className="flex items-center">My Task</Link>
+        <Link to="/myTask" className="flex items-center">
+          My Task
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -53,7 +58,9 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/cpmpletedTask" className="flex items-center">Completed Task</Link>
+        <Link to="/cpmpletedTask" className="flex items-center">
+          Completed Task
+        </Link>
       </Typography>
     </ul>
   );
@@ -68,11 +75,13 @@ const Header = () => {
         >
           <Link to="/" className="flex items-center gap-2">
             <img src={logo} className="w-8" alt="" />
-            <span className="font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">NSR TASK</span>
+            <span className="font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">
+              NSR TASK
+            </span>
           </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <div>
+        <div className="flex gap-2 items-center">
           {user?.uid ? (
             <Button
               variant="gradient"
@@ -92,6 +101,17 @@ const Header = () => {
                 <span>Log In</span>
               </Button>
             </Link>
+          )}
+          {btn ? (
+            <BsFillSunFill
+              onClick={handleThemeSwitch}
+              className="text-3xl cursor-pointer hidden lg:block"
+            />
+          ) : (
+            <BsFillMoonFill
+              className="text-3xl cursor-pointer hidden lg:block"
+              onClick={handleThemeSwitch}
+            />
           )}
         </div>
         <IconButton
@@ -146,14 +166,26 @@ const Header = () => {
           </Button>
         ) : (
           <Link to="login">
-            <Button 
-            variant="gradient" 
-            size="sm" 
-            fullWidth
-            className="bg-gradient-to-l from-green-400 to-blue-600">
+            <Button
+              variant="gradient"
+              size="sm"
+              fullWidth
+              className="bg-gradient-to-l from-green-400 to-blue-600"
+            >
               <span>Login</span>
             </Button>
           </Link>
+        )}
+        {btn ? (
+          <BsFillSunFill
+            onClick={handleThemeSwitch}
+            className="text-3xl cursor-pointer text-black"
+          />
+        ) : (
+          <BsFillMoonFill
+            className="text-3xl cursor-pointer text-black"
+            onClick={handleThemeSwitch}
+          />
         )}
       </MobileNav>
     </Navbar>

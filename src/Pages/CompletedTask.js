@@ -70,14 +70,14 @@ const CompletedTask = () => {
       .catch((e) => console.error(e));
   }
   return (
-    <div className="mt-20 relative">
+    <div className="mt-20 h-[100vh]">
       <h1 className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 text-center">
         Completed Task
       </h1>
       <div className="grid lg:grid-cols-2 gap-4 my-10">
         {completedTask?.map((ct) => (
           <section key={ct._id}>
-            <div className="w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between p-4">
+            <div className="dark:bg-white dark:text-black w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between p-4">
               <div className="flex items-center gap-4">
                 <img src={ct.image} className="h-36 w-36 rounded-3xl" alt="" />
                 <p>{ct.task}</p>

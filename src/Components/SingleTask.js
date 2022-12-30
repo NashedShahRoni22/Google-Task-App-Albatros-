@@ -33,7 +33,7 @@ const SingleTask = ({ t, refetch }) => {
       });
   };
   return (
-    <div className="w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between">
+    <div className="w-full mt-4 shadow-2xl rounded-3xl flex items-center justify-between dark:bg-white dark:text-black">
       <div className="flex items-center gap-4">
         <img src={t.image} className="h-36 w-36 rounded-3xl" alt="" />
         <p>{t.task}</p>
