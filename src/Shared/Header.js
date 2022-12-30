@@ -105,11 +105,11 @@ const Header = ({ handleThemeSwitch, btn }) => {
           {btn ? (
           <BsMoonStars
             onClick={handleThemeSwitch}
-            className="text-3xl cursor-pointer text-blue-400 mt-2 md:hidden lg:block"
+            className="text-3xl cursor-pointer text-blue-400 mt-2 hidden lg:block"
           />
         ) : (
           <BsFillSunFill
-            className="text-3xl cursor-pointer text-yellow-800 mt-2 md:hidden lg:block"
+            className="text-3xl cursor-pointer text-yellow-800 mt-2 hidden lg:block"
             onClick={handleThemeSwitch}
           />
         )}
