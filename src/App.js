@@ -9,6 +9,7 @@ import MyTask from "./Pages/MyTask";
 import Update from "./Shared/Update";
 import CompletedTask from "./Pages/CompletedTask";
 import PrivateRoutes from "./Routes/PrivateRoutes";
+import NotFound from "./NotFoundPage/NotFound";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,6 +41,10 @@ function App() {
         {
           path: "/cpmpletedTask",
           element: <PrivateRoutes><CompletedTask/></PrivateRoutes>
+        },
+        {
+          path: "*",
+          element: <NotFound></NotFound>
         },
       ],
     },

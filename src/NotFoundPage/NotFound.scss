@@ -1,0 +1,21 @@
+.nfBg{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(255,0,0,1));
+    h1{
+        font-size: 96px;
+        font-weight: 700;
+    }
+    p{
+        font-size: 24px;
+        font-weight: 600;
+    }
+    Button{
+        margin-top: 24px;
+        background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+    }
+}
+
