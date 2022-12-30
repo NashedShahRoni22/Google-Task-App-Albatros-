@@ -7,7 +7,7 @@ const SingleTask = ({ t, refetch }) => {
   const handleDelete = (t) => {
     const sure = window.confirm(`Do want to delete ${t.task}?`);
     if (sure) {
-      fetch(`http://localhost:8000/task/${t._id}`, {
+      fetch(`https://task-management-server-livid.vercel.app/task/${t._id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -20,7 +20,7 @@ const SingleTask = ({ t, refetch }) => {
     }
   };
   const handleConfirm = (t) => {
-    fetch(`http://localhost:8000/taskComplete/${t._id}`, {
+    fetch(`https://task-management-server-livid.vercel.app/taskComplete/${t._id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

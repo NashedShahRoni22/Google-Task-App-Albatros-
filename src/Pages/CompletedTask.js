@@ -13,7 +13,7 @@ const style = {
 
 const CompletedTask = () => {
   const {user} = useContext(AuthContext);
-  const url = `http://localhost:8000/completed?email=${user.email}`
+  const url = `https://task-management-server-livid.vercel.app/completed?email=${user.email}`
   const { data: completedTask, refetch } = useQuery({
     queryKey: ["completedTask"],
     queryFn: () =>
@@ -22,7 +22,7 @@ const CompletedTask = () => {
   const handleDelete = (ct) => {
     const sure = window.confirm(`Do want to delete ${ct.task}?`);
     if (sure) {
-      fetch(`http://localhost:8000/task/${ct._id}`, {
+      fetch(`https://task-management-server-livid.vercel.app/task/${ct._id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -35,7 +35,7 @@ const CompletedTask = () => {
     }
   };
   const handleNotConfirm = (t) => {
-    fetch(`http://localhost:8000/taskNotComplete/${t._id}`, {
+    fetch(`https://task-management-server-livid.vercel.app/taskNotComplete/${t._id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -50,10 +50,10 @@ const CompletedTask = () => {
   const handleComment =(e)=>{
     e.preventDefault();
     const comment = e.target.comment.value;
-    const taskId = e.target.task_id.value;
+    // const taskId = e.target.task_id.value;
 
-    const c = {comment, email : user.email, taskId}
-    fetch("http://localhost:8000/comment", {
+    const c = {comment, email : user.email}
+    fetch("https://task-management-server-livid.vercel.app/comment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -95,7 +95,7 @@ const CompletedTask = () => {
                 </div>
                 <form onSubmit={handleComment} className="mt-4 flex flex-col items-end">
                   <Input label="Comment" name="comment"></Input>
-                  <Input defaultValue={ct._id} className="hidden" name='task_id'></Input>
+                  {/* <Input defaultValue={ct._id} className="hidden" name='task_id'></Input> */}
                   <Button type="submit" className="mt-2 w-fit bg-gradient-to-r from-blue-400 to-pink-600 " size="sm">
                     Comment
                   </Button>

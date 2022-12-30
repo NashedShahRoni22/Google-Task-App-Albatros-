@@ -10,7 +10,7 @@ const Update = () => {
     e.preventDefault();
     const newTask = e.target.newTask.value;
     const ut = { newTask };
-    fetch(`http://localhost:8000/update/${t._id}`, {
+    fetch(`https://task-management-server-livid.vercel.app/update/${t._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

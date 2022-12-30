@@ -36,7 +36,7 @@ function App() {
         {
           path: "/update/:id",
           element: <Update/>,
-          loader: ({params})=> fetch(`http://localhost:8000/updateTask/${params.id}`)
+          loader: ({params})=> fetch(`https://task-management-server-livid.vercel.app/updateTask/${params.id}`)
         },
         {
           path: "/cpmpletedTask",

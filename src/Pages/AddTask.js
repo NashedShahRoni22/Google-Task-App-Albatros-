@@ -39,7 +39,7 @@ const AddTask = () => {
       .catch((e) => console.log(e));
   };
   const addTaskToDb = (taskDetails) => {
-    fetch("http://localhost:8000/task", {
+    fetch("https://task-management-server-livid.vercel.app/task", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -11,7 +11,7 @@ const style = {
 
 const MyTask = () => {
   const {user} = useContext(AuthContext);
-  const url = `http://localhost:8000/alltask?email=${user.email}`
+  const url = `https://task-management-server-livid.vercel.app/alltask?email=${user.email}`
   const { data: alltask, refetch } = useQuery({
     queryKey: ["alltask"],
     queryFn: () =>
